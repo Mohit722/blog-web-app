@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Mohit Tiwari's Blog</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+            font-family: 'Georgia', serif;
+        }
+
+        nav {
+            margin-top: 1rem;
+        }
+
+        nav a {
+            color: #fff;
+            margin: 0 10px;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 2rem;
+        }
+
+        .contact-form {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+            max-width: 600px;
+        }
+
+        .contact-form h2 {
+            margin-top: 0;
+        }
+
+        .contact-form label {
+            display: block;
+            margin: 0.5rem 0;
+        }
+
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .contact-form input[type="radio"] {
+            margin-right: 0.5rem;
+        }
+
+        .contact-form .gender-options {
+            display: flex;
+            align-items: center;
+            margin: 0.5rem 0;
+        }
+
+        .contact-form .gender-options label {
+            margin-right: 1rem;
+        }
+
+        .contact-form button {
+            background: #333;
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .contact-form button:hover {
+            background: #555;
+        }
+
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Mohit Tiwari</h1>
+        <nav>
+            <a href="index.html">HOME</a> | 
+            <a href="about.html">About</a> | 
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="contact-form">
+            <h2>Contact Me</h2>
+            <form id="contactForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label>Gender:</label>
+                <div class="gender-options">
+                    <input type="radio" id="male" name="gender" value="Male">
+                    <label for="male">Male</label>
+                    <input type="radio" id="female" name="gender" value="Female">
+                    <label for="female">Female</label>
+                </div>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="contact">Contact Number:</label>
+                <input type="text" id="contact" name="contact" required>
+
+                <label for="notes">Notes:</label>
+                <textarea id="notes" name="notes" rows="4" placeholder="2-3 lines if you want..."></textarea>
+
+                <button type="submit">Submit</button>
+            </form>
+            <div id="formResponse"></div>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2024 Mohit Tiwari. All rights reserved on this content.
+    </footer>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var formData = new FormData(this);
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('POST', 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec', true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    document.getElementById('formResponse').innerHTML = '<p>Thank you for your submission. We will get back to you soon.</p>';
+                    document.getElementById('contactForm').reset();
+                } else {
+                    document.getElementById('formResponse').innerHTML = '<p>Sorry, something went wrong. Please try again later.</p>';
+                }
+            };
+
+            xhr.send(formData);
+        });
+    </script>
+
+</body>
+</html>
